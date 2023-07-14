@@ -58,30 +58,29 @@ test <- bcData[-idx,]
 
 
 # k=3 test
-#print('k=3')
+print('k=3')
 predict_k3 <- kknn(formula=Class~., training[,-1], test, k=3,kernel ="rectangular")
 fit <- fitted(predict_k3)
-k3 <- table(Actual=test$Class,kknn=fit) #or Fitted=fit
-### Help for accuracy function found at https://datascienceplus.com/k-nearest-neighbor-for-prediction-of-diabetes-in-nhanes/
-accuracy <- function(x){sum(diag(x)/(sum(rowSums(x)))) * 100}
-accuracy(k3)
+table(Actual=test$Class,kknn=fit) #kknn=fit or Fitted=fit
+error3 <- !(test$Class==fit)
+error_k3 <- sum(error3)/length(error3) #checks for accuracy
+error_k3
 
 # k=5 test
-#print('k=5')
+print('k=5')
 predict_k5 <- kknn(formula=Class~., training[,-1], test, k=5,kernel ="rectangular")
 fit <- fitted(predict_k5)
-k5 <- table(Actual=test$Class,kknn=fit) # or Fitted=fit
-### Help for accuracy function found at https://datascienceplus.com/k-nearest-neighbor-for-prediction-of-diabetes-in-nhanes/
-#accuracy <- function(x){sum(diag(x)/(sum(rowSums(x)))) * 100}
-accuracy(k5)
-
+table(Actual=test$Class,kknn=fit) #kknn=fit or Fitted=fit
+error5 <- !(test$Class==fit)
+error_k5 <- sum(error5)/length(error5) #checks for accuracy
+error_k5
 
 # k=10 test
-#print('k=10')
+print('k=10')
 predict_k10 <- kknn(formula=Class~., training[,-1], test, k=10,kernel ="rectangular")
 fit <- fitted(predict_k10)
-k10 <- table(Actual=test$Class,kknn=fit) # or Fitted=fit
-### Help for accuracy function found at https://datascienceplus.com/k-nearest-neighbor-for-prediction-of-diabetes-in-nhanes/
-#accuracy <- function(x){sum(diag(x)/(sum(rowSums(x)))) * 100}
-accuracy(k10)
+table(Actual=test$Class,kknn=fit) #kknn=fit or Fitted=fit
+error10 <- !(test$Class==fit) 
+error_k10 <- sum(error10)/length(error10)   #checks for accuracy
+error_k10
 
